@@ -1,0 +1,696 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+/* color de la marca, como root para cambiarlo facilmente */
+:root {
+    --theme: #2db2d3;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto Mono', monospace;
+}
+
+
+/* Navegacion */
+nav {
+    background-color: var(--theme);
+    color: white;
+    height: 100px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Readex Pro', sans-serif;
+    position: fixed;        /*  para que la navegacion no desplaza */
+}
+
+.logo {
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav h1 {
+    font-size: 30px;
+    margin-left: 30px;
+    font-family: 'Dancing Script', cursive;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+nav li {
+    margin-right: 40px;
+}
+
+nav a {
+    text-decoration: none;  /* para que los enlances no estan subrayados */
+    color: inherit;
+}
+
+/* Sign Up Navegacion */
+.su-nav {
+    position: static;       /* poscion static en las paginas de login y signup porque la pagina no tiene scroll */
+}
+
+
+
+/*Contenido de la pagina */
+
+.content {      /* El contenedor de cad a pagina es flexbox para centrar los elementos en el centro */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 100px;
+}
+
+.content h1 {   /* estilos del h1 de la pagina index */
+    font-size: 2.5rem;
+    text-align: center;
+    color: #333;
+    margin-top: 60px;
+    font-family: 'Sacramento', cursive;
+    font-size: 70px;
+    font-weight: lighter;
+}
+
+#searchbar {        /* Formulario de busqueda */
+    height: 30px;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 60px;
+}
+
+#searchtext {       /* input de busqueda */
+    width: 410px;
+    height: 30px;
+    border: 2px solid var(--theme);
+    border-radius: 5px;
+}
+
+#searchbutton {     /* boton de enviar de busqueda */
+    width: 180px;
+    cursor: pointer;
+    height: 34px;
+    border-radius: 5px;
+    background-color: var(--theme);
+    color: white;
+    border: none;
+    font-family: 'Readex Pro', sans-serif;
+}
+
+
+/* Grid para los articulos de la pagina index */
+
+.grid-container {
+    width: 850px;
+    display: grid;
+    grid-template-columns: auto auto auto;  /* Tres columnas en el grid del mismo tamano */
+    grid-gap: 40px;
+    background-color: white;
+    overflow: hidden;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+
+.grid-item {        /* Cada elemento en el grid es un flexbox con todo centrado */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.img {
+    width: 250px;
+    height: 300px;
+    overflow: hidden;
+    cursor: pointer;    /* Para indicar que el imagen es un enlace */
+}
+
+.img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;  /* Para que el imagen cubre el espacio */
+}
+
+.grid-item .icons {     /* Iconos que parece en cada elemento del grid */
+    height: 25px;
+    width: 260px;
+    margin-top: 5px;
+}
+
+.captionText, .postUsername {   /* Estilos para el username y el pie de foto */
+    width: 250px;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.postUsername{
+    font-weight: bolder;
+    color: rgb(30, 30, 139);
+}
+
+/* Iconos */
+
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 8px;
+}
+
+.far, .fas{
+    color: #333;
+    font-size: 22px;
+    margin-left: 5px;
+    margin-right: 8px;
+}
+
+.fas {
+    font-size: 20px;
+}
+
+.icon-value {
+    margin-right: 20px;
+}
+
+
+
+
+/* El imagen del elemento emergente */
+.popup {
+    display: none;      /* para que no es visible hasta que alguien hace click en una foto */
+}
+
+.popup-content {        /* contenedeor para el popup. posicion fixed para que no mueva */
+    z-index: 200;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    top: 30px;
+}
+
+.popup-content img {
+    height: 500px;
+    width: 350px;
+}
+
+.popup-content .box{    /* la parte de derecha del elemento emergente*/
+    height: 500px;
+    width: 330px;
+    background-color: #fff;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    overflow: hidden;
+    overflow-y: scroll;     /* scroll si hay una cantidad de comentarios */
+}
+
+.box .close {
+    position: absolute;
+    right: 10px;
+    top: -10px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;        /* para cambiar el cursor porque es el boton para cerrar el elemento emergente */
+}
+
+.popup .profile {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;     /* La foto es un circulo */
+}
+
+.popup .row-one {           /* contenedor flex para el username y foto de perfil */
+    display: flex;
+    margin-top: 60px;
+    align-items: center;
+    height: 80px;
+    margin-left: 10px;
+}
+
+.popup .row-one p {
+    margin-left: 15px;
+    font-weight: 600;
+}
+
+.popup .row-two {           /* contenedor flex para los iconos */
+    margin-left: 15px;
+    margin-top: 10px;
+    display: flex;
+}
+
+.popup .row-two p {         /* los numeros (cantidad de likes/shares/comentarios) */
+    margin-right: 30px;
+}
+
+.popup .caption {
+    margin: 20px 15px;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.popup .line {
+    width: 330px;
+    height: 1px;
+    background-color: #d3d3d3;
+}
+
+.popup .commentInput {      /* estilos pare el formulario para dejar un comentario, este es el contendor flex del formulario y boton de enviar*/
+    box-sizing: border-box; /* para que el padding no cambie el tamano del div */
+    height: fit-content;
+    width: 313px;
+    display: flex;         
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.popup .comment-input {     /* estilos para el formulario para dejar un comentario */
+    box-sizing: border-box;
+    height: 30px;
+    width: 223px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+
+.popup .comment-submit {    /* estilos para el boton de enviar del comentario */
+    box-sizing: border-box;
+    width: 60px;
+    padding: 5px;
+    background-color: #fff;
+    font-family: inherit;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.popup .comment {           /* div contenedor flex creado en javascript para cada comentario */ 
+    width: 330px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px
+}
+
+.popup .comment img {       /* foto de perfil de cada comentario */
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.popup .comment-text {      /* contenedor flex para el nombre y el texto del comentario */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin-left: 15px;
+    margin-right: 15px;
+    overflow: hidden;
+    height: fit-content;
+}
+
+.popup .comment-text p {
+    font-size: 10px;
+    color: #333;
+}
+
+.popup .comment-text .username {    /* Para hacer el username negrita */
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+
+.popup .comment .comment-likes {    /* div para los iconos y la cantidad de likes/comentarios/shares */
+    margin-right: 45px;
+}
+
+.popup .comment .far {              /* icono */
+    font-size: 12px;
+    text-align: center;
+}
+
+.popup .comment .number {           /* numero */
+    font-size: 12px;
+    position: relative;
+    left: 4px;
+}
+
+.empty {                            /* class para cuando el usuario no ha hecho click en 'me gusta' */
+    color: #333;
+}
+
+.full {                             /* class para cuando el usuario ha hech click en 'me gusta' */
+    color: red;
+}
+
+
+
+
+
+
+
+/* Paginas Sign Up/login */
+/* contendor flex para el contenido de la pagina */
+.su-page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 100px);    /* Para que el contenido sea el tamano de la pagina minus la navegador */
+    margin: 0;
+}
+
+.su-form-container {                /* Contenedor del formulario (deberia estar en el centro de la pagina) */
+    background-color: #fff;
+    border: 1px solid #333;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgb(0,0,0,0.3);
+    width: 400px;
+    max-width: 100%;
+}
+
+.su-header {
+    color: #333;
+    padding: 10px 40px;
+}
+
+.su-header h2 {     /* Titulo del formulario */
+    margin: 0;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: -20px;
+    font-size: 26px;
+}
+
+.su-form {          /* el formulario (contendor) con todos los inputs */
+    padding: 30px 40px;
+    background-color: #fff;
+    color: #333;
+    font-size: 12px;
+}
+
+.su-last {
+    margin-bottom: 10px;
+}
+
+.su-form-control label {        /* los labels (nombres de los inputs) */
+    display: inline-block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.su-form-control input {        /* los inputs del formulario */
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    display: block;
+    padding: 10px;
+    width: 300px;
+    font-family: inherit;
+    box-shadow: 0 2px 5px rgb(0,0,0,0.3);
+    font-size: 12px;
+    color: rgb(63, 63, 63);
+}
+
+.su-form-control i {            /* iconos para exito/error */
+    position: relative;
+    bottom: 30px;
+    left: 250px;
+}
+
+.su-form-control .tick {        /* si el formulario es un exito, el color es verde.*/
+    left: 290px;
+    color: green;
+    visibility: hidden;         /* solo sea visible si el formulario es un exito (hecho en javascript) */      
+}
+
+.su-form-control .mistake {
+    color: crimson;            /* si el formulario tiene un error, el color es rojo.*/
+    visibility: hidden;          /* solo sea visible si el formulario es un exito (hecho en javascript) */
+}
+
+
+.su-form-control small {        /* El mensaje de error si el formulario tenga un error */
+    position: relative;
+    right: 80px;
+    color: crimson;
+    visibility: hidden;         /* solo sea visible si el formulario es un exito (hecho en javascript) */
+}
+
+.buttons {                      /* contenedor flex para los enlances de sign up de otras maneras */
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+}
+
+.btn {
+    padding: 8px;
+    font-family: inherit;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn:not(:last-child) {     /* Todos los botons aparte del ultimo, tendra un margin-bottom: 8px */
+    margin-bottom: 8px;
+}
+
+.btn-email {                /* colores de la pagina en el boton 'sign up with email' */
+    background-color: var(--theme);
+    color: #fff;
+}
+
+.btn-google {               /* colores de gogole en el boton 'sign up with google' */
+    background-color: #4c8bf5;
+    color: #fff;
+}
+
+.btn-apple {                /* colores de apple en el boton 'sign up with apple' */
+    background-color: #050708;
+    color: #fff;
+}
+
+/* Verificacion del formulario */
+.su-form-control.success input {  /*para cambiar el color del input del formulario cuando es un exito */
+    border-color: green;
+}
+
+.su-form-control.error input {      /*para cambiar el color del input del formulario cuando tiene un error */
+    border-color: crimson;
+}
+
+
+.su-form-control.success .tick {    /* para marcar el input correcto */
+    visibility: visible;
+}
+
+.su-form-control.error .mistake {   /* para marcar el input incorrecto */
+    visibility: visible;
+}
+
+.su-form-control.error small {      /* para mostrar el mensaje de error */
+    visibility: visible;
+}
+
+.su-form p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+/* Pagina Help */
+
+.content-help .help-title {         /* el titulo de la pagina */
+    font-family: 'Roboto Mono', monospace;
+    color: #333;
+}
+
+.content-help .contact-text {
+    margin-top: 40px;
+}
+
+.content-help .container {      /* contenedor para la pagina */
+    width: 1000px;
+    height: fit-content;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.article .line {            /* las lineas */
+    width: 1000px;
+    height: 1px;
+    background-color: #333;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.article .title {           /* el titulo de cada articulo*/
+    font-weight: bold;
+    font-size: 22px;
+    color: #333;
+    padding: 10px 20px;
+}
+
+.article .text {            /* el texto de cada articulo */
+    padding: 15px 20px;
+}
+
+.article a {                /* el enlace de cada articulo */
+    padding: 10px 20px;
+}
+
+
+/* Pagina Contact */
+.content-help #contact-form {       /* contenedor flex para el formulario */
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+.content-help .help-title {
+    margin-bottom: 20px;
+}
+
+.content-help .contact-text {
+    margin: 10px;
+}
+
+#contact-form label {
+    margin: 10px;
+}
+
+#contact-form input {
+    margin-bottom: 26px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 30px;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+#contact-form #message-input {
+    height: 200px;
+}
+
+#contact-form #contact-submit {
+    height: 40px;
+    width: 580px;
+    margin: auto;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--theme);
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+}
+
+
+
+
+/* Media Queries para hacer la pagina responsive */
+
+
+@media(max-width:820px){
+    .grid-container {
+        grid-template-columns: auto auto;
+        width: 600px;
+        justify-content: center;
+    }
+
+    .grid-item p {
+        padding-left: 20px;
+        padding-right: 20px;
+        position: relative;
+    }
+}
+
+
+
+@media(max-width:650px){
+
+    #searchbar { 
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 74px;
+    }
+    #searchtext {
+        height: 30px;
+    }
+    #searchbutton {
+        height: 34px;
+        width: 416px;
+    }
+}
+
+
+
+@media(max-width:600px) {
+
+    nav ul {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    nav li {
+        margin: 3px;
+        margin-right: 20px;
+    }
+    .grid-container {
+        grid-template-columns: auto;
+        width: 400px;
+        justify-content: center;
+    }
+}
+
+/* doesn't seem to be working */
+@media(max-width:450px) {
+    #searchbar { 
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 74px;
+    }
+    #searchtext {
+        width: 280px;
+        height: 30px;
+    }
+    #searchbutton {
+        height: 34px;
+        width: 280px;
+    }
+}
