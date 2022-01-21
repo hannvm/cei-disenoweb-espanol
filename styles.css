@@ -710,7 +710,7 @@ nav a {
 
     /* formulario de login y signup */
     .su-form-container {
-        width: 360px;       /* cambiar el tamano del contendor para que quepa en la pantalla */
+        width: 320px;       /* cambiar el tamano del contendor para que quepa en la pantalla */
     }
 
     .su-form-control input {
@@ -719,6 +719,6 @@ nav a {
 
     /* pagina help */
     .content-help .container {      /*cambiar el tamano del contendor de articulos para que quepa */
-        width: 360px;
+        width: 320px;
     }
 }
