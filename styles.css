@@ -680,20 +680,45 @@ nav a {
     }
 }
 
-/* doesn't seem to be working */
+/* estilos especiales para pantalla movil */
 @media(max-width:450px) {
     #searchbar { 
-        flex-direction: column;
+        flex-direction: column;     /*cambiar direccion flex para poner el boton abajo */
         justify-content: space-between;
         align-items: center;
         height: 74px;
     }
-    #searchtext {
+    #searchtext {           /*cambiar el tamano para que quepa en la pantalla */
         width: 280px;
         height: 30px;
     }
-    #searchbutton {
+    #searchbutton {         /* cambiar el tamano del boton de busqueda para que quepa en la pantalla */
         height: 34px;
         width: 280px;
+    }
+    /* elemento emergente */
+    .popup-content {        /*cambiar la direccion del flexbox del elemento emergente para poner los comentarios abajo de la foto */
+        flex-direction: column;
+        left: -50px;
+        top: 80px;
+    }
+
+    .comment {
+        width: 500px;       /* hacer el div para los comentarios el mismo tamano que el imagen */
+        height: max-content;
+    }
+
+    /* formulario de login y signup */
+    .su-form-container {
+        width: 360px;       /* cambiar el tamano del contendor para que quepa en la pantalla */
+    }
+
+    .su-form-control input {
+        width: 260px;
+    }
+
+    /* pagina help */
+    .content-help .container {      /*cambiar el tamano del contendor de articulos para que quepa */
+        width: 360px;
     }
 }
