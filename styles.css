@@ -22,7 +22,7 @@ body {
 /* Navegacion */
 nav {
     background-color: var(--theme);
-    color: white;
+    color: #fff;
     height: 100px;
     width: 100vw;
     display: flex;
@@ -106,6 +106,7 @@ nav a {
     height: 30px;
     border: 2px solid var(--theme);
     border-radius: 5px;
+    -moz-border-radius: 5px;    /* para que funcione en mozilla */
 }
 
 #searchbutton {     /* boton de enviar de busqueda */
@@ -113,6 +114,7 @@ nav a {
     cursor: pointer;
     height: 34px;
     border-radius: 5px;
+    -moz-border-radius: 5px;
     background-color: var(--theme);
     color: white;
     border: none;
@@ -250,7 +252,8 @@ nav a {
 .popup .profile {
     height: 70px;
     width: 70px;
-    border-radius: 50%;     /* La foto es un circulo */
+    border-radius: 50%;    /* La foto es un circulo */
+    -moz-border-radius: 50%;
 }
 
 .popup .row-one {           /* contenedor flex para el username y foto de perfil */
@@ -304,6 +307,7 @@ nav a {
     width: 223px;
     border: 1px solid #333;
     border-radius: 5px;
+    -moz-border-radius: 5px;
     padding: 2px 5px;
 }
 
@@ -315,6 +319,7 @@ nav a {
     font-family: inherit;
     border: 1px solid #333;
     border-radius: 5px;
+    -moz-border-radius: 5px;
 }
 
 .popup .comment {           /* div contenedor flex creado en javascript para cada comentario */ 
@@ -330,6 +335,7 @@ nav a {
     width: 45px;
     height: 45px;
     border-radius: 50%;
+    -moz-border-radius: 50%;
 }
 
 .popup .comment-text {      /* contenedor flex para el nombre y el texto del comentario */
@@ -398,6 +404,7 @@ nav a {
     background-color: #fff;
     border: 1px solid #333;
     border-radius: 5px;
+    -moz-border-radius: 5px;
     box-shadow: 0 2px 5px rgb(0,0,0,0.3);
     width: 400px;
     max-width: 100%;
@@ -436,6 +443,7 @@ nav a {
 .su-form-control input {        /* los inputs del formulario */
     border: 2px solid #f0f0f0;
     border-radius: 4px;
+    -moz-border-radius: 4px;
     display: block;
     padding: 10px;
     width: 300px;
@@ -453,12 +461,12 @@ nav a {
 
 .su-form-control .tick {        /* si el formulario es un exito, el color es verde.*/
     left: 290px;
-    color: green;
+    color: rgb(6, 131, 6);
     visibility: hidden;         /* solo sea visible si el formulario es un exito (hecho en javascript) */      
 }
 
 .su-form-control .mistake {
-    color: crimson;            /* si el formulario tiene un error, el color es rojo.*/
+    color: rgb(180, 14, 47);            /* si el formulario tiene un error, el color es rojo.*/
     visibility: hidden;          /* solo sea visible si el formulario es un exito (hecho en javascript) */
 }
 
@@ -466,7 +474,7 @@ nav a {
 .su-form-control small {        /* El mensaje de error si el formulario tenga un error */
     position: relative;
     right: 80px;
-    color: crimson;
+    color: rgb(180, 14, 47);
     visibility: hidden;         /* solo sea visible si el formulario es un exito (hecho en javascript) */
 }
 
@@ -481,6 +489,7 @@ nav a {
     font-family: inherit;
     border: none;
     border-radius: 5px;
+    -moz-border-radius: 5px;
 }
 
 .btn:not(:last-child) {     /* Todos los botons aparte del ultimo, tendra un margin-bottom: 8px */
@@ -504,11 +513,11 @@ nav a {
 
 /* Verificacion del formulario */
 .su-form-control.success input {  /*para cambiar el color del input del formulario cuando es un exito */
-    border-color: green;
+    border-color: rgb(6, 131, 6);
 }
 
 .su-form-control.error input {      /*para cambiar el color del input del formulario cuando tiene un error */
-    border-color: crimson;
+    border-color: rgb(180, 14, 47);
 }
 
 
@@ -528,104 +537,6 @@ nav a {
     text-align: center;
     margin-top: 10px;
 }
-
-
-/* Pagina Help */
-
-.content-help .help-title {         /* el titulo de la pagina */
-    font-family: 'Roboto Mono', monospace;
-    color: #333;
-}
-
-.content-help .contact-text {
-    margin-top: 40px;
-}
-
-.content-help .container {      /* contenedor para la pagina */
-    width: 1000px;
-    height: fit-content;
-    margin-top: 60px;
-    margin-bottom: 60px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border: 1px solid #333;
-    border-radius: 5px;
-}
-
-.article .line {            /* las lineas */
-    width: 1000px;
-    height: 1px;
-    background-color: #333;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.article .title {           /* el titulo de cada articulo*/
-    font-weight: bold;
-    font-size: 22px;
-    color: #333;
-    padding: 10px 20px;
-}
-
-.article .text {            /* el texto de cada articulo */
-    padding: 15px 20px;
-}
-
-.article a {                /* el enlace de cada articulo */
-    padding: 10px 20px;
-}
-
-
-/* Pagina Contact */
-.content-help #contact-form {       /* contenedor flex para el formulario */
-    display: flex;
-    flex-direction: column;
-    width: 600px;
-    border: 1px solid #333;
-    border-radius: 5px;
-    padding: 20px;
-    margin-top: 40px;
-    margin-bottom: 60px;
-}
-
-.content-help .help-title {
-    margin-bottom: 20px;
-}
-
-.content-help .contact-text {
-    margin: 10px;
-}
-
-#contact-form label {
-    margin: 10px;
-}
-
-#contact-form input {
-    margin-bottom: 26px;
-    margin-left: 10px;
-    margin-right: 10px;
-    height: 30px;
-    border: 1px solid #333;
-    border-radius: 5px;
-}
-
-#contact-form #message-input {
-    height: 200px;
-}
-
-#contact-form #contact-submit {
-    height: 40px;
-    width: 580px;
-    margin: auto;
-    border: none;
-    border-radius: 5px;
-    background-color: var(--theme);
-    color: #fff;
-    font: inherit;
-    cursor: pointer;
-}
-
-
 
 
 /* Media Queries para hacer la pagina responsive */
